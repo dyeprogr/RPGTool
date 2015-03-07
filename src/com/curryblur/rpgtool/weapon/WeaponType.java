@@ -21,7 +21,7 @@ public enum WeaponType {
 			3,
 			15,
 			"A sturdy bow, perfect for ranged battles",
-			"Art/bow.png",
+			"/bow.png",
 			HeroType.ARCHER,
 			HeroType.WARRIOR,
 			HeroType.ROGUE),
@@ -29,7 +29,7 @@ public enum WeaponType {
 			10,
 			30,
 			"A two-handed sword, heavy but powerful",
-			"Art/broadsword.png",
+			"/broadsword.png",
 			HeroType.BERSERKER,
 			HeroType.KNIGHT,
 			HeroType.SWORDSMAN,
@@ -38,14 +38,14 @@ public enum WeaponType {
 			8,
 			25,
 			"A staff imbued with frosty magic",
-			"Art/icestaff.png",
+			"/icestaff.png",
 			HeroType.ENCHANTRESS,
 			HeroType.WIZARD),
 	SWORD(
 			8,
 			20,
 			"A one-handed sword, perfect for use with a shield",
-			"Art/machete.png",
+			"/machete.png",
 			HeroType.ROGUE,
 			HeroType.WARRIOR,
 			HeroType.SWORDSMAN,
@@ -54,41 +54,41 @@ public enum WeaponType {
 			15,
 			25,
 			"A large axe, a favorite of the dwarves",
-			"Art/waraxe.png",
+			"/waraxe.png",
 			HeroType.WARRIOR,
 			HeroType.BERSERKER),
 	HAMMER(
 			20,
 			40,
 			"A battle hammer, unwieldy but devastating",
-			"Art/battlehammer.png",
+			"/battlehammer.png",
 			HeroType.BERSERKER,
 			HeroType.WARRIOR),
 	EARTHSTAFF(
 			10,
 			20,
 			"An earthstaff, imbued with earth magic",
-			"Art/earthstaff.png",
+			"/earthstaff.png",
 			HeroType.ENCHANTRESS,
 			HeroType.WIZARD),
 	ENCHANTEDBOW(
 			8,
 			20,
 			"An enchanted bow, created by elves",
-			"Art/enchantedbow.png",
+			"/enchantedbow.png",
 			HeroType.ARCHER,
 			HeroType.ROGUE),
 	MACHETE(
 			5,
 			10,
 			"A machete, quick and useful for stealthy heroes",
-			"Art/machete.png",
+			"/machete.png",
 			HeroType.ROGUE),
 	HALBERD(
 			15,
 			25,
 			"A halberd, useful for dealing damage at medium range",
-			"Art/silverhalberd.png",
+			"/silverhalberd.png",
 			HeroType.WARRIOR,
 			HeroType.BERSERKER);
 
@@ -113,12 +113,10 @@ public enum WeaponType {
 	}
 
 	private BufferedImage loadImage() {
-		File file;
 		BufferedImage img;
-		file = new File(this.filepath);
 
 		try {
-			img = ImageIO.read(file);
+			img = ImageIO.read(getClass().getResource(filepath));
 		} catch (IOException e) {
 			System.out.println("Unable to load file");
 			img = null;

@@ -10,7 +10,7 @@ public enum HeroType {
 	ARCHER(
 			"Archer",
 			"Female",
-			"Art/Heroes/Archer.png",
+			"/Archer.png",
 			5,
 			20,
 			35,
@@ -18,7 +18,7 @@ public enum HeroType {
 	BERSERKER(
 			"Berserker",
 			"Male",
-			"Art/Heroes/Berserker.png",
+			"/Berserker.png",
 			25,
 			35,
 			15,
@@ -26,7 +26,7 @@ public enum HeroType {
 	ENCHANTRESS(
 			"Enchantress",
 			"Female",
-			"Art/Heroes/Enchantress.png",
+			"/Enchantress.png",
 			5,
 			15,
 			15,
@@ -34,7 +34,7 @@ public enum HeroType {
 	KNIGHT(
 			"Knight",
 			"Male",
-			"Art/Heroes/Knight.png",
+			"/Knight.png",
 			20,
 			30,
 			25,
@@ -42,7 +42,7 @@ public enum HeroType {
 	ROGUE(
 			"Rogue",
 			"Female",
-			"Art/Heroes/Rogue.png",
+			"/Rogue.png",
 			10,
 			20,
 			30,
@@ -50,7 +50,7 @@ public enum HeroType {
 	SWORDSMAN(
 			"Swordsman",
 			"Male",
-			"Art/Heroes/Swordsman.png",
+			"/Swordsman.png",
 			25,
 			25,
 			25,
@@ -58,7 +58,7 @@ public enum HeroType {
 	WARRIOR(
 			"Warrior",
 			"Male",
-			"Art/Heroes/Warrior.png",
+			"/Warrior.png",
 			35,
 			35,
 			25,
@@ -66,7 +66,7 @@ public enum HeroType {
 	WIZARD(
 			"Wizard",
 			"Male",
-			"Art/Heroes/Wizard.png",
+			"/Wizard.png",
 			5,
 			15,
 			15,
@@ -92,12 +92,10 @@ public enum HeroType {
 	}
 	
 	private BufferedImage loadImage() {
-		File file;
 		BufferedImage img;
-		file = new File(this.filePath);
 
 		try {
-			img = ImageIO.read(file);
+			img = ImageIO.read(getClass().getResource(this.filePath));
 		} catch (IOException e) {
 			System.out.println("Unable to load file");
 			img = null;

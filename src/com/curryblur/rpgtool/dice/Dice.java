@@ -35,7 +35,6 @@ public class Dice {
 	}
 	
 	private BufferedImage loadImage(int number) {
-		File file;
 		BufferedImage img;
 		
 		//check for bad inputs, no image for these numbers
@@ -46,12 +45,11 @@ public class Dice {
 		}
 		
 		//images are numbers 1-6
-		String filepath = "Art/dado-" + number + ".png";
-		file = new File(filepath);
+		String filepath = "/dado-" + number + ".png";
 		
 		//load the file
 		try {
-			img = ImageIO.read(file);
+			img = ImageIO.read(getClass().getResource(filepath));
 		} catch (IOException e) {
 			System.out.println("Unable to load file");
 			img = null;
