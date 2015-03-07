@@ -27,6 +27,25 @@ public class DicePanel extends JPanel{
 	public DicePanel(){
 		//set up initial status
 		UIManager.put("Label.font", new javax.swing.plaf.FontUIResource("Serif", Font.PLAIN, 25));
+		initializeVariables();
+		this.setBackground(Color.DARK_GRAY);
+		
+		imgPanel1 = new ImagePanel(Img1, Color.DARK_GRAY, 0);
+		imgPanel2 = new ImagePanel(Img2, Color.DARK_GRAY, 0);
+		imgPanel3 = new ImagePanel(Img3, Color.DARK_GRAY, 0);
+		
+		//get dice button ready
+		rollDice = new JButton("Roll Dice!");
+		rollDice.addActionListener(new DiceListener());
+		
+		//set overall layout
+		setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		setUpLayout(c);
+	}
+	
+	public void initializeVariables(){
 		dice1 = new Dice(6);
 		dice2 = new Dice(6);
 		dice3 = new Dice(6);
@@ -44,22 +63,9 @@ public class DicePanel extends JPanel{
 		Img1 = dice1.getImage();
 		Img2 = dice2.getImage();
 		Img3 = dice3.getImage();
-		
-		//get dice button ready
-		rollDice = new JButton("Roll Dice!");
-		rollDice.addActionListener(new DiceListener());
-		
-		//set overall layout
-		
-		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		this.setBackground(Color.DARK_GRAY);
-		
-		imgPanel1 = new ImagePanel(Img1, Color.DARK_GRAY, 0);
-		imgPanel2 = new ImagePanel(Img2, Color.DARK_GRAY, 0);
-		imgPanel3 = new ImagePanel(Img3, Color.DARK_GRAY, 0);
-		
+	}
+	
+	public void setUpLayout(GridBagConstraints c){
 		c.weightx = 2;
 		c.weighty = 2;
 		c.gridx = 1;

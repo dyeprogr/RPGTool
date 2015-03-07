@@ -38,18 +38,7 @@ public class WeaponPanel extends JPanel {
 		labelTitle.setFont(new javax.swing.plaf.FontUIResource("Serif", Font.PLAIN, 25));
 
 		//set initial labels
-		labelName = new JLabel("Name: " + weapon.getName());
-		labelDesc = new JLabel(weapon.getDesc());
-		labelDamage= new JLabel("Damage: " + weapon.getMinDamage() + 
-				" - " + weapon.getMaxDamage());
-		String heroString = getHeroesString(weapon);
-		labelHeroes = new JLabel(heroString);
-		
-		labelName.setForeground(Color.white);
-		labelDesc.setForeground(Color.white);
-		labelDamage.setForeground(Color.white);
-		labelHeroes.setForeground(Color.white);
-		labelTitle.setForeground(Color.white);
+		setUpLabels();
 		
 		//get hero Img
 		Img1 = weapon.getImage();
@@ -64,11 +53,65 @@ public class WeaponPanel extends JPanel {
 		});
 		
 		//set overall layout
-		
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		this.setBackground(Color.DARK_GRAY);
 			
+		setUpLayout(c);
+		
+	}
+	
+	private void resetWeapon(){
+		this.weapon = WeaponFactory.getWeapon();
+		updateLabels();
+		updateImage();
+	}
+	
+	private void updateLabels(){
+		labelName.setText("Name: " + weapon.getName());
+		labelDesc.setText(weapon.getDesc());
+		labelDamage.setText("Damage: " + weapon.getMinDamage() + 
+				" - " + weapon.getMaxDamage());
+		String heroString = getHeroesString(weapon);
+		labelHeroes.setText(heroString);
+	}
+	
+	private void updateImage(){
+		Img1 = weapon.getImage();
+		imgPanel1.setImg(Img1);
+		imgPanel1.repaint();
+	}
+	
+	private String getHeroesString(Weapon weapon){
+		String returnString = "Used by: ";
+		ArrayList<HeroType> heroList = weapon.getHeroes();
+		for(int i = 0; i < heroList.size(); i++){
+			returnString += heroList.get(i).getHeroClass();
+			if(i==heroList.size()-1){
+				break;
+			} else {
+				returnString += ", ";
+			}
+		}
+		return returnString;
+	}
+	
+	private void setUpLabels(){
+		labelName = new JLabel("Name: " + weapon.getName());
+		labelDesc = new JLabel(weapon.getDesc());
+		labelDamage= new JLabel("Damage: " + weapon.getMinDamage() + 
+				" - " + weapon.getMaxDamage());
+		String heroString = getHeroesString(weapon);
+		labelHeroes = new JLabel(heroString);
+		
+		labelName.setForeground(Color.white);
+		labelDesc.setForeground(Color.white);
+		labelDamage.setForeground(Color.white);
+		labelHeroes.setForeground(Color.white);
+		labelTitle.setForeground(Color.white);
+	}
+	
+	private void setUpLayout(GridBagConstraints c){
 		c.weightx = 2;
 		c.weighty = 2;
 		
@@ -109,40 +152,5 @@ public class WeaponPanel extends JPanel {
 		c.fill=GridBagConstraints.CENTER;
 		c.anchor = GridBagConstraints.CENTER;
 		this.add(newWeapon, c);
-	}
-	
-	private void resetWeapon(){
-		this.weapon = WeaponFactory.getWeapon();
-		updateLabels();
-		updateImage();
-	}
-	
-	private void updateLabels(){
-		labelName.setText("Name: " + weapon.getName());
-		labelDesc.setText(weapon.getDesc());
-		labelDamage.setText("Damage: " + weapon.getMinDamage() + 
-				" - " + weapon.getMaxDamage());
-		String heroString = getHeroesString(weapon);
-		labelHeroes.setText(heroString);
-	}
-	
-	private void updateImage(){
-		Img1 = weapon.getImage();
-		imgPanel1.setImg(Img1);
-		imgPanel1.repaint();
-	}
-	
-	private String getHeroesString(Weapon weapon){
-		String returnString = "Used by: ";
-		ArrayList<HeroType> heroList = weapon.getHeroes();
-		for(int i = 0; i < heroList.size(); i++){
-			returnString += heroList.get(i).getHeroClass();
-			if(i==heroList.size()-1){
-				break;
-			} else {
-				returnString += ", ";
-			}
-		}
-		return returnString;
 	}
 }

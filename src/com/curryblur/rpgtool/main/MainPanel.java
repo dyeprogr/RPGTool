@@ -27,6 +27,7 @@ public class MainPanel extends JPanel {
 	JButton dice, hero, weapon;
 	
 	public MainPanel(){
+		//initialize variables
 		this.dicePanel = new DicePanel();
 		this.heroPanel = new HeroPanel();
 		this.weaponPanel = new WeaponPanel();
@@ -39,17 +40,20 @@ public class MainPanel extends JPanel {
 		GridBagConstraints c = new GridBagConstraints();
 		mainPanel.setLayout(new GridBagLayout());
 		
+		setUpMainPanel(c);
+		
+		this.add(mainPanel, c);
+		c.gridy = 1;
+		this.add(buttonPanel, c);
+	}
+	
+	private void setUpMainPanel(GridBagConstraints c){
 		c.weightx = 2;
 		c.weighty = 2;
 		c.gridy = 0;
 		c.gridx = 1;
 		c.fill = GridBagConstraints.BOTH;
 		mainPanel.add(heroPanel, c);
-		
-		this.add(mainPanel, c);
-		
-		c.gridy = 1;
-		this.add(buttonPanel, c);
 	}
 	
 	private void setUpButtonPanel(JPanel buttonPanel){
@@ -59,6 +63,7 @@ public class MainPanel extends JPanel {
 		hero = new JButton("Hero Generator");
 		weapon = new JButton("Weapon Generator");
 		
+		//add listeners to switch main panel
 		dice.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
 				updateMainPanel(dicePanel);
@@ -76,7 +81,6 @@ public class MainPanel extends JPanel {
 				updateMainPanel(weaponPanel);
 			}
 		});
-		
 		
 		buttonPanel.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();

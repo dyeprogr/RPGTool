@@ -36,21 +36,7 @@ public class HeroPanel extends JPanel {
 		labelTitle.setFont(new javax.swing.plaf.FontUIResource("Serif", Font.PLAIN, 25));
 
 		//set initial labels
-		labelName = new JLabel("Name: " + hero.getName());
-		labelHeroClass = new JLabel("Class: " + hero.getHeroClass());
-		labelGender= new JLabel("Gender: " + hero.getGender());
-		labelStrength = new JLabel("Strength: " + hero.getStrength());
-		labelIntelligence = new JLabel("Intelligence: " + hero.getIntelligence());
-		labelHealth = new JLabel("Health: " + hero.getHealth());
-		labelDexterity = new JLabel("Dexterity: " +  hero.getDexterity());
-		labelName.setForeground(Color.white);
-		labelHeroClass.setForeground(Color.white);
-		labelGender.setForeground(Color.white);
-		labelStrength.setForeground(Color.white);
-		labelIntelligence.setForeground(Color.white);
-		labelHealth.setForeground(Color.white);
-		labelDexterity.setForeground(Color.white);
-		labelTitle.setForeground(Color.white);
+		setInitialLabels();
 		
 		//get hero Img
 		Img1 = hero.getImage();
@@ -69,7 +55,52 @@ public class HeroPanel extends JPanel {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		this.setBackground(Color.DARK_GRAY);
-			
+		
+		setUpLayout(c);
+		
+	}
+	
+	private void resetHero(){
+		this.hero = HeroFactory.getHero();
+		updateLabels();
+		updateImage();
+	}
+	
+	private void updateLabels(){
+		labelName.setText("Name: " + hero.getName());
+		labelHeroClass.setText("Class: " + hero.getHeroClass());
+		labelGender.setText("Gender: " + hero.getGender());
+		labelStrength.setText("Strength: " + hero.getStrength());
+		labelIntelligence.setText("Intelligence: " + hero.getIntelligence());
+		labelHealth.setText("Health: " + hero.getHealth());
+		labelDexterity.setText("Dexterity: " +  hero.getDexterity());
+	}
+	
+	private void updateImage(){
+		Img1 = hero.getImage();
+		imgPanel1.setImg(Img1);
+		imgPanel1.repaint();
+	}
+	
+	private void setInitialLabels(){
+		labelName = new JLabel("Name: " + hero.getName());
+		labelHeroClass = new JLabel("Class: " + hero.getHeroClass());
+		labelGender= new JLabel("Gender: " + hero.getGender());
+		labelStrength = new JLabel("Strength: " + hero.getStrength());
+		labelIntelligence = new JLabel("Intelligence: " + hero.getIntelligence());
+		labelHealth = new JLabel("Health: " + hero.getHealth());
+		labelDexterity = new JLabel("Dexterity: " +  hero.getDexterity());
+		labelName.setForeground(Color.white);
+		labelHeroClass.setForeground(Color.white);
+		labelGender.setForeground(Color.white);
+		labelStrength.setForeground(Color.white);
+		labelIntelligence.setForeground(Color.white);
+		labelHealth.setForeground(Color.white);
+		labelDexterity.setForeground(Color.white);
+		labelTitle.setForeground(Color.white);
+	}
+	
+	private void setUpLayout(GridBagConstraints c){
 		c.weightx = 2;
 		c.weighty = 2;
 		
@@ -118,27 +149,5 @@ public class HeroPanel extends JPanel {
 		c.gridwidth = 2;
 		c.fill=GridBagConstraints.CENTER;
 		this.add(newHero, c);
-	}
-	
-	private void resetHero(){
-		this.hero = HeroFactory.getHero();
-		updateLabels();
-		updateImage();
-	}
-	
-	private void updateLabels(){
-		labelName.setText("Name: " + hero.getName());
-		labelHeroClass.setText("Class: " + hero.getHeroClass());
-		labelGender.setText("Gender: " + hero.getGender());
-		labelStrength.setText("Strength: " + hero.getStrength());
-		labelIntelligence.setText("Intelligence: " + hero.getIntelligence());
-		labelHealth.setText("Health: " + hero.getHealth());
-		labelDexterity.setText("Dexterity: " +  hero.getDexterity());
-	}
-	
-	private void updateImage(){
-		Img1 = hero.getImage();
-		imgPanel1.setImg(Img1);
-		imgPanel1.repaint();
 	}
 }
