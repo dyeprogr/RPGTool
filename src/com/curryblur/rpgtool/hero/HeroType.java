@@ -96,7 +96,7 @@ public enum HeroType {
 		try {
 			img = ImageIO.read(getClass().getResource(this.filePath));
 		} catch (IOException e) {
-			System.out.println("Unable to load file");
+			System.out.println("Unable to load file " + filePath);
 			img = null;
 		}
 

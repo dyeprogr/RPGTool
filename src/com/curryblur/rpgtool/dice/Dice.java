@@ -50,7 +50,7 @@ public class Dice {
 		try {
 			img = ImageIO.read(getClass().getResource(filepath));
 		} catch (IOException e) {
-			System.out.println("Unable to load file");
+			System.out.println("Unable to load file " + filepath);
 			img = null;
 		}
 
